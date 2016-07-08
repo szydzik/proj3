@@ -5,7 +5,7 @@
  */
 package views;
 
-import boundary.PersonFacade;
+import facades.PersonFacade;
 import entities.Person;
 import java.io.Serializable;
 import javax.ejb.EJB;

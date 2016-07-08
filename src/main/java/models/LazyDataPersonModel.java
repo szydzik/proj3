@@ -5,7 +5,7 @@
  */
 package models;
 
-import boundary.PersonFacade;
+import facades.PersonFacade;
 import entities.Person;
 import java.io.Serializable;
 import java.util.List;

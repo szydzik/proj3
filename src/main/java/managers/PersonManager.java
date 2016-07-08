@@ -25,31 +25,20 @@ public class PersonManager extends AbstractManager<Person>{
         super(Person.class);
     }
     
-    
-    public List<Person> retrievePersons(int first, int pageSize) {
- 
-        String sql = "from " + Person.class.getName()+
-                                       " p order by p.id desc";
-
-        TypedQuery<Person> query = entityManager.createQuery(sql, Person.class)
-                .setFirstResult(first)
-                .setMaxResults(pageSize);
-        List<Person> list = query.getResultList();
-        
-        return list;
-        
-    }
-    
-    public List<Person> retrievePersons(int first, int pageSize, String sortField,SortOrder sortOrder, Map<String, Object> filters)
-            {
+    public List<Person> retrievePersons(int first, int pageSize, String sortField,SortOrder sortOrder, Map<String, Object> filters){
  
         String sql = "from " + Person.class.getName()+
                                        " p where 1=1 ";
  
+        String idFilter = (String) filters.get("id");
         String nameFilter = (String) filters.get("name");
         String surnameFilter = (String) filters.get("surname");
         String ageFilter = (String) filters.get("age");
  
+        if (idFilter != null) {
+            sql += " and cast(p.id as string) like :id ";
+        }
+        
         if (nameFilter != null) {
             sql += " and p.name like :name ";
         }
@@ -73,6 +62,10 @@ public class PersonManager extends AbstractManager<Person>{
                 .setFirstResult(first)
                 .setMaxResults(pageSize);
  
+        if (idFilter != null) {
+            query.setParameter("id", "%"+idFilter+"%");
+        }
+        
         if (nameFilter != null) {
             query.setParameter("name", "%"+nameFilter+"%");
         }
@@ -95,10 +88,15 @@ public class PersonManager extends AbstractManager<Person>{
                 + Person.class.getName() +
                 " p where 1=1 ";
  
+        String idFilter = (String) filters.get("id");
         String nameFilter = (String) filters.get("name");
         String surnameFilter = (String) filters.get("surname");
         String ageFilter = (String) filters.get("age");
  
+        if (idFilter != null) {
+            sql += " and cast(p.id as string) like :id ";
+        }
+        
         if (nameFilter != null) {
             sql += " and p.name like :name ";
         }
@@ -113,6 +111,10 @@ public class PersonManager extends AbstractManager<Person>{
  
         TypedQuery<Long> query = entityManager.createQuery(sql, Long.class);
  
+        if (idFilter != null) {
+            query.setParameter("id", "%"+idFilter+"%");
+        }
+        
         if (nameFilter != null) {
             query.setParameter("name", "%"+nameFilter+"%");
         }

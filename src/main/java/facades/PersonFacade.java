@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package boundary;
+package facades;
 
 import entities.LogMessage;
 import entities.Person;
@@ -60,14 +60,6 @@ public class PersonFacade {
 
     public Person findPerson(Integer id) {
         return personManager.find(id);
-    }
-
-    public List<Person> findByPageAndLimit(int page, int limit) {
-        return personManager.retrievePersons(page, limit);
-    }
-
-    public List<Person> retrievePersons(int first, int pageSize) {
-        return personManager.retrievePersons(first, pageSize);
     }
     
     public List<Person> retrievePersons(int first, int pageSize, String sortField,SortOrder sortOrder, Map<String, Object> filters) {
