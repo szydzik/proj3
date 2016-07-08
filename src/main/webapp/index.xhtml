@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"      
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">  
+
+    <h:head>
+        <title>JSF Main Page</title>
+    </h:head>
+    <h:body>
+        <h2>JSF Main Page - hello.xhtml</h2>
+        <h:form>
+            <p:panel id="panel1" header="Menu" style="margin:10pt; margin-top: 10pt" toggleable="true">
+                <h:panelGrid columns="3" cellpadding="30">
+                    <p:commandButton id="tableButton" title="tableButton" value="tableButton" action="table" ajax="false"></p:commandButton>
+                    <p:commandButton id="mapButton" title="mapButton" value="mapButton" action="map" ajax="false"></p:commandButton>
+                    <p:commandButton id="test2"></p:commandButton>
+                </h:panelGrid>
+            </p:panel>
+
+        </h:form>
+    </h:body>
+</html>

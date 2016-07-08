@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"    
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <h:head>
+        <title>JSF Table</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <h2>JSF Table - table.xhtml</h2>
+
+
+            <p:panel id="panel2" header="Tabela" style="margin:10pt; margin-top: 10pt" toggleable="false">
+                <p:dataTable id="lazyDataTable" 
+                             var="p" 
+                             paginator="true" 
+                             rows="10" 
+                             value="#{tableModel}"
+                             paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                             rowsPerPageTemplate="5,10,15" 
+                             style="width: 80%;margin-left: 10%;margin-right: 10%;"
+                             selectionMode="single"
+                             rowKey="#{p.id}"
+                             rowIndexVar="rIndex"
+                             selection="#{tableModel.selected}"
+                             widgetVar="personDatatable"
+                             lazy="true"
+                             sortBy="#{p.id}">
+
+                    <p:column id="idColumnId" style="width:10%" sortBy="#{p.id}" filterBy="#{p.id}" filterStyle="width:30%">
+                        <f:facet name="header" >Id</f:facet>
+                        <h:outputText value="#{p.id}" />
+                    </p:column>
+                    <p:column id="idColumnName" style="width:35%" sortBy="#{p.name}" filterBy="#{p.name}">
+                        <f:facet name="header">Name</f:facet>
+                        <h:outputText value="#{p.name}" />
+                    </p:column>
+                    <p:column id="idColumnSurname" style="width:35%" sortBy="#{p.surname}" filterBy="#{p.surname}">
+                        <f:facet name="header">Surname</f:facet>
+                        <h:outputText value="#{p.surname}" />
+                    </p:column>
+                    <p:column id="idColumnAge" style="width:20%" sortBy="#{p.age}" filterBy="#{p.age}">
+                        <f:facet name="header">Age</f:facet>
+                        <h:outputText value="#{p.age}" />
+                    </p:column>
+                    <f:facet name="footer">
+                        <p:commandButton id="createButton" 
+                                         icon="ui-icon-plus"
+                                         action="details"
+                                         actionListener="#{personView.init(null)}"
+                                         ajax="true">
+                        </p:commandButton>
+
+                        <p:commandButton id="editButton"   
+                                         icon="ui-icon-pencil"
+                                         actionListener="#{personView.init(tableModel.selected)}"
+                                         action="details"
+                                         ajax="false">
+                        </p:commandButton>
+
+                        <p:commandButton id="deleteButton" 
+                                         icon="ui-icon-trash"
+                                         actionListener="#{tableModel.deletePerson}"
+                                         update="lazyDataTable"
+                                         ajax="false">
+                        </p:commandButton>
+                    </f:facet>
+                </p:dataTable>
+
+            </p:panel>
+
+        </h:form>
+    </h:body>
+</html>

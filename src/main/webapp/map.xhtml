@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"      
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">  
+<script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
+    <h:head>
+        <title>JSF Map Page</title>
+    </h:head>
+    <h:body>
+        <h2>JSF Map Page - map.xhtml</h2>
+        <h:form>
+            
+            <p:panel id="panel1" header="Map" style="margin:10pt; margin-top: 10pt" toggleable="false,0">
+                 <p:gmap center="41.381542, 2.122893" zoom="15" type="HYBIRD" style="width:600px;height:400px" />
+            </p:panel>
+
+        </h:form>
+    </h:body>
+</html>
